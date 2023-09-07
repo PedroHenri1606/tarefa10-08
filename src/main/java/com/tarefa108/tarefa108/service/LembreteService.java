@@ -34,12 +34,8 @@ public class LembreteService {
         final Lembrete lembreteBanco = this.buscarPorId(id);
 
         if(lembreteBanco == null || !lembreteBanco.getId().equals(lembrete.getId())){
-            throw new RuntimeException("não foi possivel identificar a pessoa informada!");
+            throw new RuntimeException("não foi possivel identificar o lembrete informado!");
         }
         return repository.save(lembrete);
-    }
-
-    public void deletar(Long id){
-        repository.deleteById(id);
     }
 }

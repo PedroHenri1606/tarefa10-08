@@ -36,7 +36,4 @@ public class PessoaService {
         return repository.save(pessoa);
     }
 
-    public void deletar(Long id){
-         repository.deleteById(id);
-    }
 }

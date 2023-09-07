@@ -46,13 +46,4 @@ public class PessoaController {
         }
     }
 
-    @DeleteMapping(value = "/deletar")
-    public ResponseEntity<String> deletar(@RequestParam("id") final Long id){
-        try{
-            service.deletar(id);
-            return ResponseEntity.ok("Registro deletado com sucesso!");
-        }  catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
-    }
 }

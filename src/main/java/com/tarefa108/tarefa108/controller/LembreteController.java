@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Objects;
 
 /*
 
@@ -48,6 +49,15 @@ public class LembreteController {
         }
     }
 
+    @GetMapping(value = "/buscar")
+    public ResponseEntity<Lembrete> buscarPorId(@RequestParam("id") final Long id) {
+        try {
+            return ResponseEntity.ok().body(service.buscarPorId(id));
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Lembrete> cadastrar(@RequestBody final Lembrete lembrete){
         try {
@@ -63,16 +73,6 @@ public class LembreteController {
             service.editar(id,lembrete);
             return ResponseEntity.ok("Registro editado com sucesso!");
         } catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
-    }
-
-    @DeleteMapping(value = "/deletar")
-    public ResponseEntity<String> deletar(@RequestParam("id") final Long id){
-        try{
-            service.deletar(id);
-            return ResponseEntity.ok("Registro deletado com sucesso!");
-        }  catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
